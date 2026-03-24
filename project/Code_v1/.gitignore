@@ -13,7 +13,6 @@ dist
 dist-ssr
 
 # npm
-package-lock.json
 .npm
 
 # Local environment files
