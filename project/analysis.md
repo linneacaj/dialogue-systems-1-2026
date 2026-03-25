@@ -37,9 +37,19 @@ since both players need to discuss, and come to an agreement about the validity 
 - You cannot simply pick synonyms. For example, if the current word is "sofa", the next word cannot be "couch".
 
 The winner of the game is whoever does not take too long, repeat a word, fail to defend their word choice, or give up.
+
 ________________
 
-### Development Details
+### Tech Stack:
+
+- Vite, HTML, TypeScript: building the application
+- SpeechState, Stately.ai, Xstate: dialogue management
+- Azure NLU: natural language understanding of responses
+- Groq API: creating and fetching responses for the machine in the game
+
+________________
+
+### Development Process
 I decided to use an agile development process in this project, and therefore I made two different versions of this
 game (and designed a third version), all with different levels of complexity. The first version is very basic
 and focused mostly on setting up the UI, and the basic dialgoue structure around managing the gameplay sequences.
@@ -75,7 +85,7 @@ Azure NLU), and the user is also able to ask the machine for instructions.
 This version makes word associations using a hardcoded dictionary, so it is very easy for the user to win.
 The dictionary approach is not ideal for real gameplay, but I wanted to have a minimum viable product that 
 demonstrates how the game would be played. In this version there is no time limit on the responses and neither 
-the human or the computer can make a challenge. 
+the human nor the computer can make a challenge. 
 
 ________________
 
@@ -115,14 +125,16 @@ ________________
 
 ### Version 3 (future improvements)
 
-My plan for a version 3 of this game is to improve two main things: it does not rely on an LLM, and is able to make 
-challenges if the human says a seemingly random word.
+My plan for a version 3 of this game is to improve two main things: to be completely built "in-house"
+(to not rely on an LLM), and for the machine to be able to make challenges if the human says a seemingly random word.
 
 To solve the first issue: not relying on an LLM anymore, I was thinking that the computer could rely on a trained word-embedding
-model instead. This also comes with some limitations since I would need to train a model with adequately large vocabulary so that
-the computer is able to recognize nearly all words said by the human, but the word embeddings cannot get too big to interfere with
-memory or speed. Another challenge is to come up with a way for the model to be able to generate justifications to the chosen 
-word if the human decides to challenge it. 
+model instead. Word embedding models are something that we have learned about in the Machine Learning class, so it would
+be feasible with my current experiences in MLT. However, this also comes with some limitations since I would need to train
+a model with adequately large vocabulary so that the computer is able to recognize nearly all words said by the human,
+but the word embeddings cannot get too big to interfere with memory or speed. Another challenge is to come up with a 
+way for the model to be able to generate justifications in a natural sounding way if the human decides to challenge
+a response. 
 
 Considerations:
 - train a word embedding model that picks the next word association. 
